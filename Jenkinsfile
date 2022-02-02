@@ -78,10 +78,10 @@ pipeline {
          
           // curl http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo >result.json
 
-http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?analysesId=[ID]
+// http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?analysesId=[ID]
 
-http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo
+// http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo
 
-curl -u c316609771a51028089adec4949d002effb3756b: -G --data-urlencode "branch=main" --data-urlencode "projectKey=normaljavarepo" http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status > result.json
+// curl -u c316609771a51028089adec4949d002effb3756b: -G --data-urlencode "branch=main" --data-urlencode "projectKey=normaljavarepo" http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status > result.json
 
-curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json
+// curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json

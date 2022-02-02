@@ -56,9 +56,9 @@ public class Application extends AbstractHandler
 
     private void handleCronTask(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Handle WorkerTier tasks here.
-        response.getWriter().println("Process Task Here.");
+        response.getWriter().println("Process Task Here. ");
     }
-    // ASIASL6R63BCTMJBF3XZ
+    // ASIASL6R63BCTMJBF3XZ AccessKey
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         response.setContentType("text/html;charset=utf-8");

@@ -63,7 +63,7 @@ pipeline {
     stage('Run script') {
         steps{
             sh '''#!/bin/bash -e
-            #python3 zap.py
+            python3 zap.py
          '''
         }
     }

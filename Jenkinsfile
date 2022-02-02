@@ -30,6 +30,9 @@ pipeline {
           /opt/sonar-scanner/bin/sonar-scanner -X -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_ACCESS_TOKEN > sonarqube_scanreport.json
           aws s3 cp sonarqube_scanreport.json s3://dsop-bucket-1234567890/
           echo "build stage completed"
+          if [ $(jq -r '.projectStatus.status' sonarqube_scanreport.json) = ERROR ] ; then $echo "Aborting because of an error high risk dependencies..." && exit 1;fi 
+
+
           '''
       }
     }

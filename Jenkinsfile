@@ -6,7 +6,7 @@ pipeline {
     AWS_ACCESS_KEY_ID= credentials('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY= credentials('AWS_SECRET_ACCESS_KEY')
     AWS_SESSION_TOKEN= credentials('AWS_SESSION_TOKEN')
-    SONARQUBE_ACCESS_TOKEN = c316609771a51028089adec4949d002effb3756b
+    SONARQUBE_ACCESS_TOKEN = 'c316609771a51028089adec4949d002effb3756b'
     SONARQUBE_URL="http://ec2-54-158-56-66.compute-1.amazonaws.com:81"
     OWASP_ZAP_URL="http://ec2-54-158-56-66.compute-1.amazonaws.com"
     OWASP_ZAP_API_KEY="uposfjoipjqnobfp"

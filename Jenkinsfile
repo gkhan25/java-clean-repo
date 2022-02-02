@@ -29,10 +29,9 @@ pipeline {
           sh '''#!/bin/bash -e
           /opt/sonar-scanner/bin/sonar-scanner -X -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_ACCESS_TOKEN > sonarqube_scanreport.json
           aws s3 cp sonarqube_scanreport.json s3://dsop-bucket-1234567890/
+          curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json
+          if [ $(jq -r '.projectStatus.status' sonarqube_scanreport.json) = ERROR ] ; then $echo "Aborting because of an error high risk dependencies..." && exit 1;fi
           echo "build stage completed"
-          if [ $(jq -r '.projectStatus.status' sonarqube_scanreport.json) = ERROR ] ; then $echo "Aborting because of an error high risk dependencies..." && exit 1;fi 
-
-
           '''
       }
     }
@@ -76,3 +75,13 @@ pipeline {
             // fi
 
               // aws sns publish --region us-east-1 --topic-arn \"arn:aws:sns:us-east-1:163112212549:Jenkins\" --message-structure json  --message file://dependency-check-report.json
+         
+          // curl http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo >result.json
+
+http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?analysesId=[ID]
+
+http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo
+
+curl -u c316609771a51028089adec4949d002effb3756b: -G --data-urlencode "branch=main" --data-urlencode "projectKey=normaljavarepo" http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status > result.json
+
+curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json

@@ -42,11 +42,6 @@ pipeline {
             ls -lrt && pwd && cat dependency-check-report.json
             sudo chmod 775 *
             aws s3 cp dependency-check-report.json s3://dsop-bucket-1234567890/
-            if( cat dependency-check-report.json | grep -i HIGHEST); 
-            then
-              aws sns publish --region us-east-1 --topic-arn \"arn:aws:sns:us-east-1:163112212549:Jenkins\" --message-structure json  --message file://dependency-check-report.json
-              echo "Aborting because of high risk dependencies..." && exit 1; 
-            fi
             '''
         }
     }
@@ -71,3 +66,10 @@ pipeline {
     }
   }
 }
+
+            // if( cat dependency-check-report.json | grep -i HIGHEST); 
+            // then
+            //   echo "Aborting because of high risk dependencies..." && exit 1; 
+            // fi
+
+              // aws sns publish --region us-east-1 --topic-arn \"arn:aws:sns:us-east-1:163112212549:Jenkins\" --message-structure json  --message file://dependency-check-report.json

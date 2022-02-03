@@ -24,54 +24,64 @@ pipeline {
     //         '''
     //   }
     // }
-    stage('Sonarqube-scanner') {
-      steps{
-          sh '''#!/bin/bash -e
-          /opt/sonar-scanner/bin/sonar-scanner -X -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_ACCESS_TOKEN > sonarqube_scanreport.json
-          aws s3 cp sonarqube_scanreport.json s3://dsop-bucket-1234567890/
-          curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json
-          
-          if [ $(jq -r '.projectStatus.status' result.json) = ERROR ]; 
-          then 
-            echo "Sonarqube scan failed"
-            exit 1;
-            echo "Abort";
-          fi
-          echo "build stage completed"
-          '''
-      }
-    }
-    stage('dependency-check-scan') {
+    // stage('Sonarqube-scanner') {
+    //   steps{
+    //       sh '''#!/bin/bash -e
+    //       /opt/sonar-scanner/bin/sonar-scanner -X -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_ACCESS_TOKEN > sonarqube_scanreport.json
+    //       aws s3 cp sonarqube_scanreport.json s3://dsop-bucket-1234567890/
+    //       curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json
+    //       cat result.json
+    //       if [ $(jq -r '.projectStatus.status' result.json) = ERROR ]; 
+    //       then 
+    //         echo "Sonarqube scan failed"
+    //         exit 1;
+    //         echo "Abort"
+    //       fi
+    //       echo "build stage completed"
+    //       '''
+    //   }
+    // }
+    // stage('dependency-check-scan') {
+    //     steps{
+    //         sh '''#!/bin/bash -e
+    //         pwd
+    //         sudo /opt/dependency-check/bin/dependency-check.sh --project "java" --format JSON --scan .
+    //         echo "OWASP dependency check analysis status is completed..."; 
+    //         ls -lrt && pwd && cat dependency-check-report.json
+    //         sudo chmod 775 *
+    //         aws s3 cp dependency-check-report.json s3://dsop-bucket-1234567890/
+    //         '''
+    //     }
+    // }
+    // stage('report-analysis') {
+    //     steps{
+    //         sh '''#!/bin/bash -e
+    //         #jq "{ \\"messageType\\": \\"CodeScanReport\\", \\"reportType\\": \\"OWASP-Dependency-Check\\", \
+    //         \\"createdAt\\": $(date +\\"%Y-%m-%dT%H:%M:%S.%3NZ\\"), \\"source_repository\\": env.CODEBUILD_SOURCE_REPO_URL, \
+    //         \\"source_branch\\": env.CODEBUILD_SOURCE_VERSION, \
+    //         \\"build_id\\": env.CODEBUILD_BUILD_ID, \
+    //         \\"source_commitid\\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
+    //         \\"report\\": . }" dependency-check-report.json > payload.json
+    //      '''
+    //   }
+    // }
+        stage('') {
         steps{
             sh '''#!/bin/bash -e
-            pwd
-            sudo /opt/dependency-check/bin/dependency-check.sh --project "java" --format JSON --scan .
-            echo "OWASP dependency check analysis status is completed..."; 
-            ls -lrt && pwd && cat dependency-check-report.json
-            sudo chmod 775 *
-            aws s3 cp dependency-check-report.json s3://dsop-bucket-1234567890/
-            '''
+            mvn clean install
+            aws s3 cp target/sample-app-1.0.jar s3://dsop-bucket-1234567890/
+            version=$(od -An -N4 -i < /dev/urandom)
+            aws elasticbeanstalk create-application-version --application-name java-vulnerable-app --version-label $version --source-bundle S3Bucket=dsop-bucket-1234567890,S3Key=sample-app-1.0.jar
+         '''
         }
     }
-    stage('report-analysis') {
-        steps{
-            sh '''#!/bin/bash -e
-            #jq "{ \\"messageType\\": \\"CodeScanReport\\", \\"reportType\\": \\"OWASP-Dependency-Check\\", \
-            \\"createdAt\\": $(date +\\"%Y-%m-%dT%H:%M:%S.%3NZ\\"), \\"source_repository\\": env.CODEBUILD_SOURCE_REPO_URL, \
-            \\"source_branch\\": env.CODEBUILD_SOURCE_VERSION, \
-            \\"build_id\\": env.CODEBUILD_BUILD_ID, \
-            \\"source_commitid\\": env.CODEBUILD_RESOLVED_SOURCE_VERSION, \
-            \\"report\\": . }" dependency-check-report.json > payload.json
-         '''
-      }
-    }
-    stage('Run script') {
-        steps{
-            sh '''#!/bin/bash -e
-            python3 zap.py
-         '''
-        }
-    }
+    // stage('Run script') {
+    //     steps{
+    //         sh '''#!/bin/bash -e
+    //         python3 zap.py
+    //      '''
+    //     }
+    // }
   }
 }
 

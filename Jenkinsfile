@@ -72,6 +72,7 @@ pipeline {
             aws s3 cp target/sample-app-1.0.jar s3://dsop-bucket-1234567890/
             version=$(od -An -N4 -i < /dev/urandom)
             aws elasticbeanstalk create-application-version --region us-east-1 --application-name java-vulnerable-app --version-label $version --source-bundle S3Bucket=dsop-bucket-1234567890,S3Key=sample-app-1.0.jar
+            aws elasticbeanstalk update-environment --region us-east-1 --environment-name Javavulnerableapp-env-1 --version-label $version
          '''
         }
     }

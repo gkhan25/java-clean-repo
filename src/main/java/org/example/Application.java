@@ -36,7 +36,10 @@ public class Application extends AbstractHandler
             return getStackTrace(exception);
         }
     }
-
+    // export AWS_ACCESS_KEY_ID=AKIAROV4FTL2QABYVLUW
+    // export AWS_SECRET_ACCESS_KEY=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
+    // export AWS_DEFAULT_REGION=us-east-1
+    
     private static String getStackTrace(final Throwable throwable) {
         final StringWriter stringWriter = new StringWriter();
         final PrintWriter printWriter = new PrintWriter(stringWriter, true);

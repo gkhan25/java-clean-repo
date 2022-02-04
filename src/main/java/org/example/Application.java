@@ -21,7 +21,7 @@ public class Application extends AbstractHandler
 {
     private static final int PAGE_SIZE = 3000;
     private static final String INDEX_HTML = loadIndex();
-    private static final String AWS_ACCESS_KEY_ID = "UKIAROV4PTL2QABYVLOV";
+    private static final String AWS_ACCESS_KEY_ID = "UKIAROV4PTL2QABYVIOV";
     private static final String AWS_SECRET_ACCESS_KEY = "iHogeRh55mU+zdQh7T+Ej9mXKSX09exZ+ktkHOQh";
     private static final String AWS_DEFAULT_REGION = "us-east-1";
 

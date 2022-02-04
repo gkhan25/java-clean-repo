@@ -21,8 +21,8 @@ public class Application extends AbstractHandler
 {
     private static final int PAGE_SIZE = 3000;
     private static final String INDEX_HTML = loadIndex();
-    private static final String AWS_ACCESS_KEY_ID = "AKIAROV4FTL2QABYVLUW";
-    private static final String AWS_SECRET_ACCESS_KEY = "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";
+    private static final String AWS_ACCESS_KEY_ID = "AKIAROV4FTL2QABY";
+    private static final String AWS_SECRET_ACCESS_KEY = "iHogeRh55mU+zdQh7T+Ej8mXKSX09txZ+";
     private static final String AWS_DEFAULT_REGION = "us-east-1";
 
     private static String loadIndex() {
@@ -32,6 +32,7 @@ public class Application extends AbstractHandler
             System.out.println(AWS_ACCESS_KEY_ID);
             System.out.println(AWS_SECRET_ACCESS_KEY);
             System.out.println(AWS_DEFAULT_REGION);
+
             while ((line = reader.readLine()) != null) {
                 page.append(line);
             }

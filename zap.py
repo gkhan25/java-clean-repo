@@ -6,7 +6,7 @@ from pprint import pprint
 from zapv2 import ZAPv2
 import os
 
-target = 'http://javavulnerableapp-env.eba-vfzpqfrv.us-east-1.elasticbeanstalk.com'
+target = 'http://javavulnerableapp-env-1.eba-vfzpqfrv.us-east-1.elasticbeanstalk.com'
 apikey = 'uposfjoipjqnobfp' # Change to match the API key set in ZAP, or use None if the API key is disabled
 
 ZapUrl = os.environ['OWASP_ZAP_URL']

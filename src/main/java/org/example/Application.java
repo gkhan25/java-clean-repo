@@ -58,7 +58,6 @@ public class Application extends AbstractHandler
         // Handle WorkerTier tasks here.
         response.getWriter().println("Process Task Here. ");
     }
-    // ASIASL6R63BCTMJBF3XZ AccessKey
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         response.setContentType("text/html;charset=utf-8");

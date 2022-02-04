@@ -21,17 +21,17 @@ public class Application extends AbstractHandler
 {
     private static final int PAGE_SIZE = 3000;
     private static final String INDEX_HTML = loadIndex();
-    private static final String AWS_ACCESS_KEY_ID = "AKIAROV4FTL2QABY";
-    private static final String AWS_SECRET_ACCESS_KEY = "iHogeRh55mU+zdQh7T+Ej8mXKSX09txZ+";
-    private static final String AWS_DEFAULT_REGION = "us-east-1";
+    // private static final String AWS_ACCESS_KEY_ID = "AKIAROV4FTL2QABY";
+    // private static final String AWS_SECRET_ACCESS_KEY = "iHogeRh55mU+zdQh7T+Ej8mXKSX09txZ+";
+    // private static final String AWS_DEFAULT_REGION = "us-east-1";
 
     private static String loadIndex() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(Application.class.getResourceAsStream("/index.html")))) {
             final StringBuilder page = new StringBuilder(PAGE_SIZE);
             String line = null;
-            System.out.println(AWS_ACCESS_KEY_ID);
-            System.out.println(AWS_SECRET_ACCESS_KEY);
-            System.out.println(AWS_DEFAULT_REGION);
+            // System.out.println(AWS_ACCESS_KEY_ID);
+            // System.out.println(AWS_SECRET_ACCESS_KEY);
+            // System.out.println(AWS_DEFAULT_REGION);
 
             while ((line = reader.readLine()) != null) {
                 page.append(line);

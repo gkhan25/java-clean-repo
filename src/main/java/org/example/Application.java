@@ -21,6 +21,9 @@ public class Application extends AbstractHandler
 {
     private static final int PAGE_SIZE = 3000;
     private static final String INDEX_HTML = loadIndex();
+    private static final String AWS_ACCESS_KEY_ID = "AKIAROV4FTL2QABYVLUW";
+    private static final String AWS_SECRET_ACCESS_KEY = "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";
+    private static final String AWS_DEFAULT_REGION = "us-east-1";
 
     private static String loadIndex() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(Application.class.getResourceAsStream("/index.html")))) {
@@ -35,11 +38,7 @@ public class Application extends AbstractHandler
         } catch (final Exception exception) {
             return getStackTrace(exception);
         }
-    }
-    // export AWS_ACCESS_KEY_ID=AKIAROV4FTL2QABYVLUW
-    // export AWS_SECRET_ACCESS_KEY=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
-    // export AWS_DEFAULT_REGION=us-east-1
-    
+    }    
     private static String getStackTrace(final Throwable throwable) {
         final StringWriter stringWriter = new StringWriter();
         final PrintWriter printWriter = new PrintWriter(stringWriter, true);

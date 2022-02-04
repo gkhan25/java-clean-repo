@@ -51,11 +51,6 @@ pipeline {
             ls -lrt && pwd && cat dependency-check-report.json
             sudo chmod 775 *
             aws s3 cp dependency-check-report.json s3://dsop-bucket-1234567890/
-            if( cat dependency-check-report.json | grep -i HIGHEST); 
-            then
-              aws sns publish --topic-arn "arn:aws:sns:us-east-1:163112212549:Jenkins" --message file://dependency-check-report.json
-              echo "Aborting because of high risk dependencies, report sent to admin ..." && exit 1; 
-            fi
             '''
         }
     }
@@ -92,22 +87,9 @@ pipeline {
   }
 }
 
+
             // if( cat dependency-check-report.json | grep -i HIGHEST); 
             // then
-            //   echo "Aborting because of high risk dependencies..." && exit 1; 
+            //   aws sns publish --topic-arn "arn:aws:sns:us-east-1:163112212549:Jenkins" --message file://dependency-check-report.json
+            //   echo "Aborting because of high risk dependencies, report sent to admin ..." && exit 1; 
             // fi
-
-              // aws sns publish --region us-east-1 --topic-arn \"arn:aws:sns:us-east-1:163112212549:Jenkins\" --message-structure json  --message file://dependency-check-report.json
-         
-          // curl http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo >result.json
-
-// http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?analysesId=[ID]
-
-// http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status?projectKey=normaljavarepo
-
-// curl -u c316609771a51028089adec4949d002effb3756b: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" http://ec2-54-158-56-66.compute-1.amazonaws.com:81/api/qualitygates/project_status > result.json
-
-// curl -u $SONARQUBE_ACCESS_TOKEN: -G --data-urlencode "branch=master" --data-urlencode "projectKey=normaljavarepo" $SONARQUBE_URL/api/qualitygates/project_status > result.json
-
-// export SONARQUBE_ACCESS_TOKEN="c316609771a51028089adec4949d002effb3756b"
-// export SONARQUBE_URL="http://ec2-54-158-56-66.compute-1.amazonaws.com:81"

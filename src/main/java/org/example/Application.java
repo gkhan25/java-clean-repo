@@ -29,7 +29,9 @@ public class Application extends AbstractHandler
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(Application.class.getResourceAsStream("/index.html")))) {
             final StringBuilder page = new StringBuilder(PAGE_SIZE);
             String line = null;
-
+            System.out.println(AWS_ACCESS_KEY_ID);
+            System.out.println(AWS_SECRET_ACCESS_KEY);
+            System.out.println(AWS_DEFAULT_REGION);
             while ((line = reader.readLine()) != null) {
                 page.append(line);
             }

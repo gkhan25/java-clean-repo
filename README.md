@@ -30,8 +30,8 @@ Before getting started, make sure you have the following prerequisites:
 - Elastic Beanstalk environments with an application deployed. In this post, we use Java Tomcat, but you can use any other application.
 - A CodeCommit/Github/Bitbucket repo with your application code.
 - The provided sonar-project.properties file, Zap.py(to run DAST Scan) file uploaded to the root of the application code repository.
-- A SonarQube URL and generated API token for code scanning.
-- An OWASP ZAP URL and generated API key for dynamic web scanning.
+- A SonarQube URL and generated API token for code scanning. {FIX IT}
+- An OWASP ZAP URL and generated API key for dynamic web scanning. {FIX IT}
 - An application web URL to run the DAST testing.
 - An email address to receive notifications.
 

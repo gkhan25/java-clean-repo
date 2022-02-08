@@ -3,27 +3,27 @@
 ## intro to DevSecOps
 DevOps is a combination of cultural philosophies, practices, and tools that combine software development with information technology operations. These combined practices enable companies to deliver new application features and improved services to customers at a higher velocity. DevSecOps takes this a step further, integrating security into DevOps. With DevSecOps, you can deliver secure and compliant application changes rapidly while running operations consistently with automation.
 
-## Services and tools
+### Services and tools
 
 In this section, we discuss the various AWS services and third-party tools used in this solution.
 
 ### For CI/CD, we use the following AWS services:
 
-    Amazon Simple Notification Service – Amazon SNS is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.
-    Amazon Simple Storage Service – Amazon S3 is storage for the internet. You can use Amazon S3 to store and retrieve any amount of data at any time, from anywhere on the web.
-    Jenkins – Jenkins is an open source continuous integration/continuous delivery and deployment (CI/CD) automation DevOps Tool.
+- Amazon Simple Notification Service – Amazon SNS is a fully managed messaging service for both application-to-application (A2A) and application-to-person (A2P) communication.
+- Amazon Simple Storage Service – Amazon S3 is storage for the internet. You can use Amazon S3 to store and retrieve any amount of data at any time, from anywhere on the web.
+- Jenkins – Jenkins is an open source continuous integration/continuous delivery and deployment (CI/CD) automation DevOps Tool.
 
 ### Continuous testing tools
 
- Following scanning tools that are integrated in the pipeline ,  You can use the static code review tool Amazon CodeGuru for static analysis, but at the time of this writing, it’s not yet available in GovCloud and currently supports Java and Python (available in preview).
+Following scanning tools that are integrated in the pipeline ,  You can use the static code review tool Amazon CodeGuru for static analysis, but at the time of this writing, it’s not yet available in GovCloud and currently supports Java and Python (available in preview).
 
-    Amazon CodeGuru – Amazon CodeGuru is a developer tool that provides intelligent recommendations to improve code quality and identify an application’s most expensive lines of code
-    OWASP Dependency-Check – A Software Composition Analysis (SCA) tool that attempts to detect publicly disclosed vulnerabilities contained within a project’s dependencies.
-    SonarQube (SAST) – Catches bugs and vulnerabilities in your app, with thousands of automated Static Code Analysis rules.
-    OWASP Zap (DAST) – Helps you automatically find security vulnerabilities in your web applications while you’re developing and testing your applications.
+- Amazon CodeGuru – Amazon CodeGuru is a developer tool that provides intelligent recommendations to improve code quality and identify an application’s most expensive lines of code
+- OWASP Dependency-Check – A Software Composition Analysis (SCA) tool that attempts to detect publicly disclosed vulnerabilities contained within a project’s dependencies.
+- SonarQube (SAST) – Catches bugs and vulnerabilities in your app, with thousands of automated Static Code Analysis rules.
+- OWASP Zap (DAST) – Helps you automatically find security vulnerabilities in your web applications while you’re developing and testing your applications.
 
 
-## Prerequisites
+### Prerequisites
 
 Before getting started, make sure you have the following prerequisites:
 
